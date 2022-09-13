@@ -1,31 +1,13 @@
 ﻿/*
-     Spelbolaget Play’n’Pay behöver en bra algoritm för att skapa ett Fortuna-spel 
-     till sina spelmaskiner.
-     Så för att testa om spelet fungerar som den ska, ska vi skriva kod för det.
 
-     Spelet använder valutan pix.
-     Uppgiften:
-     Spelaren startar med 500 pix
-     • Spelrunda:
-     o Spelaren satsar pix (minst 50 pix)
-     o Spelaren väljer ett lyckotal (1-6)
-     o Tre T6-tärningar kastas
-     o Om en tärning visar lyckotalet får man dubbla insatsen
-     o Om två tärningar visar får man tre gånger insatsen
-     o Om alla tärningarna visar lyckonumret så får man fyra gånger insatsen.
-     • Regler
-     o Spelaren får inte satsa mer än vad denne har på banken
-     o Spelaren får inte fuska och satsa negativa värden
-     o Om spelarens konto understiger 50 pix avslutas spelet
-     o Efter en runda får spelaren se sitt saldo och välja om denne vill köra en runda till
-     
-Jag skulle börja med att tänka kronologiskt. Först genererar man ett slumpat tal, 
-sparar det som en variabel. Sen skapar man en till variabel som är pengarna (500). 
-Sen ber man spelaren mata in ett tal, om det är rätt plussar man på 50 på variabeln, 
-annars tar man bort 50. Detta sätter man i en while-sats så att loopem körs så länge 
-summan är minst 50.
+varibale som håller koll på hur mycket man har, input satsar inte fel, variable kollar på vad man satsar och lyckotalet
+if satser, följ instruktioner en rad i taget - deklarera etc 
+först del a, sen implentera regler efter spelet. man skriver i den ordningen man ska tänka
+
  */
 
+
+using System.Collections.ObjectModel;
 
 namespace OhFortuna_
 {
@@ -34,16 +16,34 @@ namespace OhFortuna_
         static void Main(string[] args)
         {
             SpelIntro();
+            int startingPix = 500;
+            Console.WriteLine("\nHow much Pix are you willing to gamble?(minimum 50)");
+            int pixGambled = int.Parse(Console.ReadLine());
+            Console.WriteLine("\nPick your lucky number and roll the dice.");
+            int luckyNumber = int.Parse(Console.ReadLine());
+
             Random random = new Random();//generate random number
             int diceRoll = (random.Next(1, 7));
+            int diceRoll2 = (random.Next(1, 7));
+            int diceRoll3 = (random.Next(1, 7));
             bool keepPlaying = true; 
-            int luckyNumber = int.Parse(Console.ReadLine());
-            int startingPix = 500;
-
-            Console.WriteLine($"\r\n The dice shows: {diceRoll}, {diceRoll} and {diceRoll}");//vill ha nya randoms
        
 
+            Console.WriteLine($"\r\n The dice shows: {diceRoll}, {diceRoll2} and {diceRoll3}");//vill ha nya randoms
+            while (keepPlaying)
+            {  
+                
+                if (startingPix < 50)
+                {
+                    Console.WriteLine("Sorry, you don't have enough to gamble with.");
+                    break;
+                }
 
+            }
+          
+            
+
+            
 
         }
         static void SpelIntro() 
@@ -51,7 +51,7 @@ namespace OhFortuna_
             Console.WriteLine("Welcome to Pay'N'Play, the place where you get rich or die trying!");
             Console.WriteLine("Your total Pixx is 500, and you must gamble at least 50 per turn");
             Console.WriteLine("            o If one of the dice shows your lucky number you get DOUBLE the Pix\r\n            o At two dice TRIPPLE the Pix\r\n            o If all three dice show your lucky number, FOUR times the Pix");
-            Console.WriteLine("Pick your lucky number and roll the dice.\r\n");
+         
                        
         }
 
