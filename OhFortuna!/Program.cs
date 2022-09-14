@@ -29,19 +29,23 @@ namespace OhFortuna_
 
             while (keepPlaying)
             {
-                Console.WriteLine("\nHow much pix are you willing to gamble?(minimum 50)");
-                int pixGambled = int.Parse(Console.ReadLine());
+                int pixGambled = 0;
                 while (true)
                 {
-                    Console.WriteLine();
-                    if (pixGambled >= 50 && pixGambled <= pix)
+                    Console.WriteLine("\nHow much pix are you willing to gamble?(minimum 50)");
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out pixGambled))
                     {
-                        keepPlaying = true;
-                        break;
+                        Console.WriteLine();
+                        if (pixGambled >= 50 && pixGambled <= pix)
+                        {
+                            keepPlaying = true;
+                            break;
+                        }
+                        else
+                            Console.WriteLine("Fel input");//Hur breakar jag ut loopen????
                     }
-                    else
-                        Console.WriteLine("Fel input");//Hur breakar jag ut loopen????
-                    break;
 
                 }
 
