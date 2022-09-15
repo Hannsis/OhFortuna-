@@ -43,7 +43,7 @@ namespace OhFortuna_
                     case "2":
                         int pix = 500;
                         Console.WriteLine($"You have {pix}");
-
+                        keepPlaying = true;
                         while (keepPlaying)
                         {
                            
@@ -72,10 +72,6 @@ namespace OhFortuna_
                             Dice.Add(random.Next(1, 7));
                             Dice.Add(random.Next(1, 7));
                             Dice.Add(random.Next(1, 7));
-
-                           // Console.WriteLine("\nPick your lucky number and roll the dice.");
-                         //   int luckyNumber = int.Parse(Console.ReadLine());
-                            //Console.WriteLine($"\r\nThe dice shows: {Dice[0]}, {Dice[1]} and {Dice[2]}");//vill ha nya randoms FIXAT
 
                             int luckyNumber = 0;
                             while (true)
@@ -153,9 +149,7 @@ namespace OhFortuna_
                             {
                                 keepPlaying = false;
                                 break;
-
                             }
-
                         }
 
                         break;
@@ -167,9 +161,7 @@ namespace OhFortuna_
                     default:
                         Console.WriteLine("Wrong input value.");
                         break;
-
                 }
-
             }
            
             static void SpelIntro()
