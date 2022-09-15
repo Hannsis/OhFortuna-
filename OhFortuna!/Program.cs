@@ -73,9 +73,31 @@ namespace OhFortuna_
                             Dice.Add(random.Next(1, 7));
                             Dice.Add(random.Next(1, 7));
 
-                            Console.WriteLine("\nPick your lucky number and roll the dice.");
-                            int luckyNumber = int.Parse(Console.ReadLine());
-                            Console.WriteLine($"\r\nThe dice shows: {Dice[0]}, {Dice[1]} and {Dice[2]}");//vill ha nya randoms
+                           // Console.WriteLine("\nPick your lucky number and roll the dice.");
+                         //   int luckyNumber = int.Parse(Console.ReadLine());
+                            //Console.WriteLine($"\r\nThe dice shows: {Dice[0]}, {Dice[1]} and {Dice[2]}");//vill ha nya randoms FIXAT
+
+                            int luckyNumber = 0;
+                            while (true)
+                            {
+                                Console.WriteLine("\nPick your lucky number and roll the dice.");
+                                string input = Console.ReadLine();
+
+                                if (int.TryParse(input, out luckyNumber))
+                                {
+                                    Console.WriteLine();
+                                    if (luckyNumber >= 1 && luckyNumber <= 7)
+                                    {
+                                        keepPlaying = true;
+                                        break;
+                                    }
+                                    else
+                                        Console.WriteLine("Fel input");//Hur breakar jag ut loopen????
+                                }
+
+                            }
+                         
+                            Console.WriteLine($"\r\nThe dice shows: {Dice[0]}, {Dice[1]} and {Dice[2]}");//vill ha nya randoms FIXAT
 
                             int match = 0;
                             for (int roll = 0; roll < Dice.Count; roll++)//deklarerar, kontrollerar, bearbetar (one time use).
