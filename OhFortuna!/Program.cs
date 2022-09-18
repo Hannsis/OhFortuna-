@@ -65,39 +65,13 @@ namespace OhFortuna_
                                 }
 
                             }
-                            /*
-                            Random random = new Random();
-                            
-                            List<int> Dice = new();     
-                            Dice.Add(random.Next(1, 7));
-                            Dice.Add(random.Next(1, 7));
-                            Dice.Add(random.Next(1, 7));
-                            */
-
 
                             int match = 0;
                             int luckyNumber = 0;
-                            while (true)
-                            {
-                                Console.WriteLine("\nPick your lucky number and roll the dice.");
-                                string input = Console.ReadLine();
-
-                                if (int.TryParse(input, out luckyNumber))
-                                {
-                                    Console.WriteLine();
-                                    if (luckyNumber >= 1 && luckyNumber <= 6)
-                                    {
-                                        keepPlaying = true;
-                                        break;
-                                    }
-                                    else
-                                        Console.WriteLine("This is a dice, it only rolls between 1 and 6.");
-                                }
-
-                            }
+                            luckyNumber = LuckyNumber(luckyNumber, keepPlaying);
                             match = RandomGen(luckyNumber, match);
                             
-                            pix = pix - pixGambled;
+                            pix -= pixGambled;
 
                             if (match == 3)
                             {
@@ -197,6 +171,28 @@ namespace OhFortuna_
                 }
                 return match;
 
+            }
+            static int LuckyNumber(int luckyNumber, bool keepPlaying) 
+            {
+                while (true)
+                {
+                    Console.WriteLine("\nPick your lucky number and roll the dice.");
+                    string input = Console.ReadLine();
+
+                    if (int.TryParse(input, out luckyNumber))
+                    {
+                        Console.WriteLine();
+                        if (luckyNumber >= 1 && luckyNumber <= 6)
+                        {
+                            keepPlaying = true;
+                            break;
+                        }
+                        else
+                            Console.WriteLine("This is a dice, it only rolls between 1 and 6.");
+                    }
+                    
+
+                }return (luckyNumber);
             }
         }
     }
