@@ -1,11 +1,4 @@
-﻿/*
-
-varibale som håller koll på hur mycket man har, input satsar inte fel, variable kollar på vad man satsar och lyckotalet
-if satser, följ instruktioner en rad i taget - deklarera etc 
-först del a, sen implentera regler efter spelet. man skriver i den ordningen man ska tänka
-
- */
-
+﻿
 
 using System;
 using System.Collections.ObjectModel;
@@ -24,9 +17,7 @@ namespace OhFortuna_
             string inputVal = "";
             while (inputVal != "3")
             {
-
                 Menu();
-
 
                 inputVal = (Console.ReadLine());
 
@@ -39,93 +30,7 @@ namespace OhFortuna_
 
                     case "2":
 
-                        int pix = 500;
-                        Console.WriteLine($"You have {pix}");
-
-                        keepPlaying = true;
-
-                        while (keepPlaying)
-                        {
-                            int pixGambled = 0;
-                            while (true)
-                            {
-                                Console.WriteLine("\nHow much pix are you willing to gamble?(minimum 50)");
-                                string input = Console.ReadLine();
-
-                                if (int.TryParse(input, out pixGambled))
-                                {
-                                    Console.WriteLine();
-                                    if (pixGambled >= 50 && pixGambled <= pix)
-                                    {
-                                        keepPlaying = true;
-                                        break;
-                                    }
-                                    else
-                                        Console.WriteLine("Fel input");
-                                }
-
-                            }
-
-                            int match = 0;
-                            int luckyNumber = 0;
-                            luckyNumber = LuckyNumber(luckyNumber, keepPlaying);
-                            match = RandomGen(luckyNumber, match);
-                            
-                            pix -= pixGambled;
-
-                            if (match == 3)
-                            {
-
-                                Console.WriteLine($"You got {match} of the dice right");
-                                pix += (pixGambled * 4);
-                                Console.WriteLine($"You won FOUR times the money, you now have: {pix}");
-
-                            }
-                            else if (match == 2)
-                            {
-                                Console.WriteLine($"You got {match} of the dice right");
-                                pix += (pixGambled * 3);
-                            }
-                            else if (match == 1)
-                            {
-                                Console.WriteLine($"You got {match} of the dice right");
-                                pix += (pixGambled * 2);
-                            }
-                            else
-                                Console.WriteLine($"You got {match} of the dice right");
-
-
-
-                            Console.WriteLine($"You have {pix} left");
-
-                            if (pix < 50)
-                            {
-                                Console.WriteLine("Sorry, you don't have enough to gamble with.");
-
-                                break;
-                            }
-
-                            Console.WriteLine("Do you wish to play again? Y/N");
-
-                            string responses = Console.ReadLine();
-                            responses = responses.ToUpper();
-                            Console.WriteLine(responses);
-
-                            if (responses == ("Y"))
-                            {
-                                Console.Clear();
-                                Console.WriteLine($"You have {pix} left");
-                                continue;
-
-                            }
-                            else
-                            {
-                                keepPlaying = false;
-                                Console.Clear();
-                                break;
-                            }
-                        }
-
+                        keepPlaying = Gameplay();
                         break;
 
                     case "3":
@@ -136,7 +41,9 @@ namespace OhFortuna_
                         Console.WriteLine("Wrong input value.");
                         break;
                 }
+
             }
+
 
             static void SpelIntro()
             {
@@ -146,6 +53,7 @@ namespace OhFortuna_
                 Console.WriteLine("Good luck\n\n");
 
             }
+
             static void Menu()
             {
                 Console.WriteLine("Välj ett av följande val: ");
@@ -154,6 +62,7 @@ namespace OhFortuna_
                 Console.WriteLine("3. Avsluta spelet");
 
             }
+
             static int RandomGen(int luckyNumber, int match)
             {
                 Random random = new Random();
@@ -172,7 +81,8 @@ namespace OhFortuna_
                 return match;
 
             }
-            static int LuckyNumber(int luckyNumber, bool keepPlaying) 
+
+            static int LuckyNumber(int luckyNumber, bool keepPlaying)
             {
                 while (true)
                 {
@@ -190,9 +100,103 @@ namespace OhFortuna_
                         else
                             Console.WriteLine("This is a dice, it only rolls between 1 and 6.");
                     }
-                    
 
-                }return (luckyNumber);
+
+                }
+                return (luckyNumber);
+            }
+
+            static bool Gameplay()
+            {
+                bool keepPlaying;
+                int pix = 500;
+                Console.WriteLine($"You have {pix}");
+
+                keepPlaying = true;
+
+                while (keepPlaying)
+                {
+                    int pixGambled = 0;
+                    while (true)
+                    {
+                        Console.WriteLine("\nHow much pix are you willing to gamble?(minimum 50)");
+                        string input = Console.ReadLine();
+
+                        if (int.TryParse(input, out pixGambled))
+                        {
+                            Console.WriteLine();
+                            if (pixGambled >= 50 && pixGambled <= pix)
+                            {
+                                keepPlaying = true;
+                                break;
+                            }
+                            else
+                                Console.WriteLine("Fel input");
+                        }
+
+                    }
+
+                    int match = 0;
+                    int luckyNumber = 0;
+                    luckyNumber = LuckyNumber(luckyNumber, keepPlaying);
+                    match = RandomGen(luckyNumber, match);
+
+                    pix -= pixGambled;
+
+                    if (match == 3)
+                    {
+
+                        Console.WriteLine($"You got {match} of the dice right");
+                        pix += (pixGambled * 4);
+                        Console.WriteLine($"You won FOUR times the money, you now have: {pix}");
+
+                    }
+                    else if (match == 2)
+                    {
+                        Console.WriteLine($"You got {match} of the dice right");
+                        pix += (pixGambled * 3);
+                    }
+                    else if (match == 1)
+                    {
+                        Console.WriteLine($"You got {match} of the dice right");
+                        pix += (pixGambled * 2);
+                    }
+                    else
+                        Console.WriteLine($"You got {match} of the dice right");
+
+
+
+                    Console.WriteLine($"You have {pix} left");
+
+                    if (pix < 50)
+                    {
+                        Console.WriteLine("Sorry, you don't have enough to gamble with.");
+
+                        break;
+                    }
+                    Console.WriteLine("Do you wish to play again? Y/N");
+
+                    string responses = Console.ReadLine();
+                    responses = responses.ToUpper();
+                    Console.WriteLine(responses);
+
+                    if (responses == ("Y"))
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"You have {pix} left");
+                        continue;
+
+                    }
+                    else
+                    {
+                        keepPlaying = false;
+                        Console.Clear();
+                        break;
+                    }
+
+                }
+
+                return keepPlaying;
             }
         }
     }
