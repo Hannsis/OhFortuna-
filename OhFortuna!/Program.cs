@@ -56,10 +56,10 @@ namespace OhFortuna_
 
             static void Menu()
             {
-                Console.WriteLine("Välj ett av följande val: ");
-                Console.WriteLine("1. Få spelets regler");
-                Console.WriteLine("2. Spela spelet");
-                Console.WriteLine("3. Avsluta spelet");
+                Console.WriteLine("Chose one of the following: ");
+                Console.WriteLine("1. How to play!");
+                Console.WriteLine("2. Pay'N'PLAY");
+                Console.WriteLine("3. Quit the game (only for cowards)");
 
             }
 
@@ -98,7 +98,7 @@ namespace OhFortuna_
                             break;
                         }
                         else
-                            Console.WriteLine("This is a dice, it only rolls between 1 and 6.");
+                            Console.WriteLine("This is a dice silly, it only rolls between 1 and 6.");
                     }
 
 
@@ -131,7 +131,7 @@ namespace OhFortuna_
                                 break;
                             }
                             else
-                                Console.WriteLine("Fel input");
+                                Console.WriteLine("Please try again!");
                         }
 
                     }
